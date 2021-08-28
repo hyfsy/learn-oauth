@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Server</title>
+</head>
+<body>
+	<input id="appName" type="text" value="" />
+	<br />
+	<input id="domain" type="text" value="" />
+	<br />
+	<button onclick="register()">注册应用</button>
+	<br />
+	<br />
+	<input id="clientId" type="text" value="" />
+	<br />
+	<button onclick="getAppInfo()">获取应用信息</button>
+
+	<script src="jquery-1.10.2.js"></script>
+	<script>
+		function register() {
+			var appName = $('#appName').val()
+			var domain = $('#domain').val()
+			$.post('/oauth-server/app/register/', {
+				appName : appName,
+				domain : domain
+			}, function(rtn) {
+				console.log(rtn)
+			})
+		}
+
+		function getAppInfo() {
+			var clientId = $('#clientId').val()
+			$.get('/oauth-server/app/info?clientId=' + clientId, null, function(rtn) {
+				console.log(rtn)
+			})
+		}
+	</script>
+</body>
+</html>

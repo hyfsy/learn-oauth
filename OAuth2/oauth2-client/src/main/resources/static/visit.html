@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Client</title>
+</head>
+<body>
+	<button onclick="invokePage()">访问页面</button>
+	<br/>
+	<button onclick="invoke()">访问信息</button>
+
+	<script src="jquery-1.10.2.js"></script>
+	<script>
+		function invokePage() {
+			window.location.href = "/oauth-client/login.html";
+		}
+
+		function invoke() {
+			$.post('/oauth-client/visit/person', null, function(rtn) {
+				console.log(rtn)
+			}, 'json')
+		}
+	</script>
+</body>
+</html>
